@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-dragon {
+    background-image:url("../src/assets/bg-wool-dark.png");
+
+}

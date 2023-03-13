@@ -1,4 +1,5 @@
 import {defineStore} from "pinia";
+console.log(process.env.VUE_APP_API_URL)
 
 export const rushStore = defineStore('rushStore',{
     state: () => ({
@@ -8,7 +9,7 @@ export const rushStore = defineStore('rushStore',{
     }),
     actions: {
         async loadRushes() {
-            await fetch(`http://localhost:5973/api/V1/parties/limit/${this.offset}`, {
+            await fetch(`${process.env.VUE_APP_API_URL}/parties/limit/${this.offset}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
@@ -22,7 +23,7 @@ export const rushStore = defineStore('rushStore',{
                 })
         },
         async loadRush(id) {
-                await fetch(`http://localhost:5973/api/V1/parties/details/${id}`, {
+                await fetch(`${process.env.VUE_APP_API_URL}/parties/details/${id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*',

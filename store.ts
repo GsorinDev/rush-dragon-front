@@ -1,5 +1,4 @@
 import {defineStore} from "pinia";
-console.log(process.env.VUE_APP_API_URL)
 
 export const rushStore = defineStore('rushStore',{
     state: () => ({

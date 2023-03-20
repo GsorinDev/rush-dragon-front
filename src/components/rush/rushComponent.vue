@@ -34,19 +34,19 @@
           <span class="bg-neutral-800 text-gray-300 cursor-pointer w-32 h-8 bg-neutral-500 bg-opacity-50 hover:bg-opacity-30 rounded-md" @click="eventChange('others')">Autres Event</span>
         </div>
         <div class="relative overflow-y-scroll h-[16rem] flex items-center flex-col scroller">
-          <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'success' && event.typeEvent === 'succes' && rushesDetails.value.events.length > 0">
+          <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'success' && event.typeEvent === 'succes' && event.typeEvent !== 'commandeNoPlayer' && rushesDetails.value.events.length > 0">
             <span>{{event.playerName}}</span>
             <span>{{event.time}}</span>
             <span>{{event.typeEvent}}</span>
           </div>
 
-          <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'commands' && event.typeEvent === 'commande' && rushesDetails.value.events.length > 0">
+          <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'commands' && (event.typeEvent === 'commande' || event.typeEvent === 'commandeNoPlayer') && rushesDetails.value.events.length > 0">
             <span>{{event.playerName === undefined ? 'Server' : event.playerName}}</span>
             <span>{{ event.time }}</span>
             <span>{{ event.commande }}</span>
           </div>
 
-          <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'others' && event.typeEvent !== 'commande' && event.typeEvent !== 'succes' && rushesDetails.value.events.length > 0">
+          <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'others' && event.typeEvent !== 'commande' && event.typeEvent !== 'succes' && event.typeEvent !== 'commandeNoPlayer' && rushesDetails.value.events.length > 0">
             <span>{{event.playerName === undefined ? 'Server' : event.playerName}}</span>
             <span>{{ event.time }}</span>
             <span>{{ event.typeEvent }}</span>

@@ -35,19 +35,19 @@
         </div>
         <div class="relative overflow-y-scroll h-[16rem] flex items-center flex-col scroller">
           <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'success' && event.typeEvent === 'succes' && rushesDetails.value.events.length > 0">
-            <span>{{event.player === undefined ? event.playerName : event.player.name}}</span>
+            <span>{{event.playerName}}</span>
             <span>{{event.time}}</span>
             <span>{{event.typeEvent}}</span>
           </div>
 
           <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'commands' && event.typeEvent === 'commande' && rushesDetails.value.events.length > 0">
-            <span>{{event.playerName === undefined ? 'Serveur' : event.playerName}}</span>
+            <span>{{event.playerName === undefined ? 'Server' : event.playerName}}</span>
             <span>{{ event.time }}</span>
             <span>{{ event.commande }}</span>
           </div>
 
           <div v-for="event of rushesDetails.value.events" :key="event.id" class="grid grid-cols-3 gap-5 bg-neutral-500 bg-opacity-50 rounded-md mt-8 py-4 w-[36rem]" v-show="typeEvent === 'others' && event.typeEvent !== 'commande' && event.typeEvent !== 'succes' && rushesDetails.value.events.length > 0">
-            <span>{{event.player === undefined ? event.playerName : event.player.name}}</span>
+            <span>{{event.playerName === undefined ? 'Server' : event.playerName}}</span>
             <span>{{ event.time }}</span>
             <span>{{ event.typeEvent }}</span>
           </div>
@@ -88,12 +88,12 @@ import {reactive, ref, defineProps} from "vue";
     }
 
     async function toggleModal() {
-      if(storeRush.rushesDetails.find((rush) => rush._id === props.rush._id) === undefined) {
-        await storeRush.loadRush(props.rush._id)
+      if(storeRush.rushesDetails.find((rush) => rush.id === props.rush.id) === undefined) {
+        await storeRush.loadRush(props.rush.id)
       }
 
       console.log(storeRush.rushesDetails)
-      rushesDetails.value = storeRush.rushesDetails.find((rush) => rush._id === props.rush._id)
+      rushesDetails.value = storeRush.rushesDetails.find((rush) => rush.id === props.rush.id)
       modal.value = !modal.value
     }
     function eventChange(eventType) {
